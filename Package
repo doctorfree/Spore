@@ -1,0 +1,9 @@
+echo "Making tags files"
+make tags
+echo "Backing up previous shar file, if any"
+[ -f spore.shar ] && mv spore.shar spore.shar-
+echo "Creating new man page if necessary"
+[ -f spore.LOCAL ] || nroff -man spore.man > spore.LOCAL
+echo "Creating new shar file"
+shar COPYING README Imakefile Makefile.std Package *.c *.h *.LOCAL *.man tags TAGS > spore.shar
+echo "Done"

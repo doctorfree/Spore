@@ -1,0 +1,25 @@
+CC = cc  
+CFLAGS = -O
+LIBS = -lm -lX11
+DESTBIN = /usr/bin/X11
+DESTMAN = /usr/man/manl
+
+spore: spore.o
+	$(CC) $(CFLAGS) -o spore spore.o $(LIBS)
+
+spore.o: spore.c spore.h patchlevel.h
+	$(CC) $(CFLAGS) -c spore.c
+
+install: spore
+	cp spore $(DESTBIN)/spore;
+	cd $(DESTBIN); chmod 755 spore
+
+install.man:
+	cp spore.man $(DESTMAN)/spore.l; chmod 644 $(DESTMAN)/spore.l
+      
+clean:
+	rm -f spore spore.o core
+
+uninstall:
+	cd $(DESTBIN); rm -f spore
+	rm -f $(DESTMAN)/spore.l

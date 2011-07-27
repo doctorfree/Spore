@@ -1,0 +1,106 @@
+.TH SPORE 6X
+.SH NAME
+spore \- calculate and display a radiating aggregate of particles
+.SH SYNOPSIS
+.in +8n
+.ti -8n
+\fIspore\fR
+[-duFR] [-w width] [-h height] [-o filename] [-m index] [-c colorwheel] [-n count][-N nballs][-k duration]
+.in -8n
+.SH DESCRIPTION
+\fIspore\fR
+generates and graphically displays a radiating aggregate of particles. It was
+originally intended as a simulation of the aggregation of dust particles in
+the atmosphere or marine snow but looks more like a spore print.
+.SH OPTIONS
+.TP 8
+-R
+Indicates the display will be in the root window. In this mode, the  default
+color map will be used and no spinning of the color wheel is possible.
+.TP
+-c \fIn\fP
+Selects one of many different color wheels to use. The default color
+wheel is a rainbow palette.
+.TP
+-d
+Indicates demo mode. In this mode, the aggregate will be calculated, displayed,
+spun, then the program will exit.
+.TP
+-w \fIn\fP
+Specifies the width of the window. Default is 512.
+.TP
+-h \fIn\fP
+Specifies the height of the window. Default is 512.
+.TP
+-k \fIduration\fP
+Specifies how many points to compute before changing colors.
+.TP
+-m \fIn\fP
+Specifies the minimum color index to be used for the  upper end of the color
+wheel
+.TP
+-n \fInumpics\fP
+Specifies how many aggregates to compute before exiting. During display
+(see NOTES below), pressing 'n' or 'N' will skip to the next map.
+.TP
+-N \fInballs\fP
+Specifies how many aggregates to simultaneously compute and display
+.TP
+-o \fIfilename\fP
+Specifies the output filename to be used. If the -o option is given, this
+file will automatically be written out at the completion of the drawing.
+If it is not specified, a default filename of spore.ppm is used and only
+written if the 'f' or 'F' keys are pressed during a run. The format of the
+output file is PPM. The parameters used to calculate the picture are included 
+as comments at the beginning of the output file.
+.TP
+-s
+Indicates to spin the color wheel immediately upon completion of display.
+.TP
+-u
+Produces a usage message.
+.TP
+.sp 2
+.SH NOTES
+.sp
+During display, use of the keys 
+\fI+-><0123456789CfFnNrswWX?hqQ\fP
+indicates:
+.sp
+.ti 10
+(+) Increment minimum color index.
+.ti 10
+(+) Decrement minimum color index.
+.ti 10
+(C) Create another aggregate, preserving the existing ones.
+.ti 10
+(n or N) Skip to the next aggregate.
+.ti 10
+(s) Spin the color wheel in the positive direction.
+.ti 10
+(r) Spin the color wheel in the negative direction.
+.ti 10
+(W or w) Increment or decrement the color map index.
+.ti 10
+(X) Erase the existing aggregates and restart the computation and display
+.ti 10
+(Q or q) quit
+.sp 2
+.SH BUGS
+.sp
+Switching multi-screens (on an SCO 3.2v4 system) while displaying an aggregate
+on the root window (in a "virtual" root window) seems to make it impossible to
+switch screens and kills the server.
+.sp
+.SH AUTHOR
+.nf
+        Ronald Joe Record
+        rr@ronrecord.com
+.fi
+.sp 2
+.SH ACKNOWLEDGEMENTS
+.PP
+The algorithm, which uses a modified random walk, was derived 
+from lectures given by Dietmar Saupe at the University of California at Santa 
+Cruz. Assistance with colormaps and spinning color wheels and X was gleaned 
+from Hiram Clawson and Stacey Campbell.

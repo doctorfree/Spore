@@ -1,0 +1,64 @@
+Written by Ronald Joe Record (rr@ronrecord.com) 07 Apr 1993
+
+INTRO
+-----
+
+The idea here is to calculate and display an aggregating particle.
+In order to accomplish this, a modified random walk algorithm is used.
+Initial spore(s) are randomly "seeded" in the center quarter of the screen.
+Subsequent "spores" randomly enter a rectangular neighborhood of a seed
+and "randomly walk" toward the seed. When within a pixel of a previously
+existing spore, the new spore "sticks". I called the program "spore" 
+because of the similar look to a mushroom spore print.
+
+The colors in the image represent the "age" of spores. After N spores have
+been "stuck", the color index is incremented.
+
+ACKNOWLEDGEMENTS
+----------------
+
+The algorithm was derived from lectures given by Dietmar Saupe at the 
+University of California at Santa Cruz. Assistance with colormaps and 
+spinning color wheels and X was gleaned from Hiram Clawson and Stacey Campbell.
+
+BUILD
+-----
+
+To build the spore binary, either use the Imakefile or the sample makefile,
+Makefile.std. If your system doesn't support prototypes, uncomment the 
+PROTODEFINE line of the Imakefile.
+
+After modifying the Imakefile appropriately, either use "xmkmf" or "imake"
+to create a Makefile. Then just type "make" to compile spore.
+
+The manual page can be formatted by typing "nroff -man spore.man > spore.6X".
+
+INSTALL
+-------
+
+To install spore, copy the spore binary to the desired location (the sample
+makefile puts it in /usr/local/bin)
+Copy the formatted man page to wherever you keep your local doc (i use
+/usr/man/cat.LOCAL for imaging software), then add that location
+to your MANPATH.
+
+TEST
+----
+
+You can test spore by just invoking it with no arguments. It should display
+a 512x480 image. Some workstations may be slow to calculate and display a
+map as there are lots of calculations involved.
+
+Some "interesting" ways to run spore are as follows :
+% spore -F -n 10 -d
+(use the full screen, calculate 10 maps in demo mode)
+% spore -R
+(display on the root window)
+% spore -o sporeprint.ppm
+(calculate and display with default parameters and save the resulting image
+ as a PPM file called sporeprint.ppm. this can be viewed later using xv or 
+ any PPM viewing utility)
+
+Ideas, comments, additions, deletions, suggestions, bug reports, code review,...
+e-mail Ronald Record at rr@ronrecord.com
+
